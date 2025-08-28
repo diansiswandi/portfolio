@@ -4,7 +4,7 @@ Selamat datang di portofolio pribadi saya! Ini adalah halaman web satu halaman y
 
 ## Deskripsi Proyek
 
-Website ini dibuat menggunakan kombinasi HTML, CSS, dan Bootstrap 5. Halaman ini mencakup:
+Website ini dibuat menggunakan kombinasi HTML, CSS, JavaScript dan Bootstrap 5. Halaman ini mencakup:
 - Data pribadi
 - Deskripsi singkat tentang saya
 - Akun media sosial
