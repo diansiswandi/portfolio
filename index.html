@@ -1,3 +1,4 @@
+<!-- Tets -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -109,8 +110,8 @@
   .profile-photo {
     width: 300px;
     height: 300px;
-    border-radius: 50%;
     object-fit: cover;
+    border-radius: 50%;
     cursor: pointer;
     transition: transform 0.3s ease;
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
@@ -130,10 +131,9 @@
     padding: 0;
   }
   .modal-body img {
-    width: 100%;
-    height: auto;
-    max-width: 600px;
     border-radius: 15px;
+    max-width: 100%;
+    height: auto;
   }
   .nav-buttons {
     position: absolute;
@@ -193,26 +193,27 @@
     margin: 5px;
     display: inline-block;
   }
-  .carousel-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
   .carousel-image {
     height: 300px;
     object-fit: cover;
     border-radius: 10px;
   }
-  .contact-item {
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 10px;
-    background: #f8f9fa;
-    transition: transform 0.3s ease;
+  .contact-container {
+    max-width: 600px;
+    margin: 0 auto;
   }
-  .contact-item:hover {
-    transform: translateY(-5px);
-    background: #e9ecef;
-  }
+       .contact-item {
+         margin-bottom: 20px;
+         padding: 15px;
+         border-radius: 10px;
+         background: #f8f9fa;
+         transition: transform 0.3s ease;
+       }
+       .contact-item:hover {
+         transform: translateY(-5px);
+         background: #e9ecef;
+       }
+
   /* Responsive Design */
   @media (max-width: 768px) {
     .book-container {
@@ -229,14 +230,45 @@
       height: 250px;
     }
     .nav-buttons {
-      display: none; /* Hide nav buttons on mobile */
+      display: none;
     }
     .social-links {
-      display: none; /* Hide default social icons on mobile */
+      display: none;
     }
-    /* Floating social toggle button */
-    #socialToggleBtn {
+  }
+  @media (max-width: 576px) {
+    body {
+      padding: 10px;
+    }
+    .book-container {
+      height: 90vh;
+    }
+    .book-cover h1 {
+      font-size: 2rem;
+    }
+    .book-content {
+      padding: 20px;
+    }
+    .profile-photo {
+      width: 200px;
+      height: 200px;
+    }
+    .carousel-image {
+      height: 200px;
+    }
+  }
+
+  /* Floating Social Media - Default hidden */
+  #socialToggleBtn, #socialFloating {
+    display: none;
+  }
+  
+  /* Floating Social Media - Show only on mobile */
+  @media (max-width: 768px) {
+    #socialToggleBtn, #socialFloating {
       display: flex;
+    }
+    #socialToggleBtn {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -261,7 +293,6 @@
       position: fixed;
       bottom: 80px;
       right: 20px;
-      display: flex;
       flex-direction: column;
       gap: 10px;
       opacity: 0;
@@ -293,30 +324,6 @@
       transform: scale(1.1);
     }
   }
-  @media (max-width: 576px) {
-    body {
-      padding: 10px;
-    }
-    .book-container {
-      height: 90vh;
-    }
-    .book-cover h1 {
-      font-size: 2rem;
-    }
-    .book-content {
-      padding: 20px;
-    }
-    .profile-photo {
-      width: 200px;
-      height: 200px;
-    }
-    .carousel-image {
-      height: 200px;
-    }
-    .contact-item {
-      padding: 10px;
-    }
-  }
 </style>
 </head>
 <body>
@@ -341,13 +348,13 @@
     <div class="content-item"><h4><i class="fas fa-birthday-cake"></i> Tempat, Tanggal Lahir</h4><p>Lubuklinggau, 12 September 1992</p></div>
     <div class="content-item"><h4><i class="fas fa-venus-mars"></i> Jenis Kelamin</h4><p>Laki-laki</p></div>
     <div class="content-item"><h4><i class="fas fa-map-marker-alt"></i> Alamat</h4><p>Dusun VII Desa Lawang Agung, Kecamatan Rupit, Kabupaten Musi Rawas Utara</p></div>
-    <div class="content-item"><h4><i class="fas fa-envelope"></i> Email</h4><p>info.diansiswandi</p></div>
+    <div class="content-item"><h4><i class="fas fa-envelope"></i> Email</h4><p>info.diansiswandi@gmail.com</p></div>
   </div>
 
   <div class="book-content" id="page2" aria-label="Halaman Tentang Saya">
     <h2 class="page-title">Tentang Saya</h2>
     <div class="content-item">
-      <p>Saya adalah seorang profesional di bidang teknologi informasi dengan latar belakang pendidikan S1 Trknik Informatika. Dengan pengalaman lebih dari 7 tahun di berbagai peran teknis dan administratif, saya telah mengembangkan keahlian dalam pengembangan web, analisis data, dan manajemen database.</p>
+      <p>Saya adalah seorang profesional di bidang teknologi informasi dengan latar belakang pendidikan S1 Teknik Informatika. Dengan pengalaman lebih dari 7 tahun di berbagai peran teknis dan administratif, saya telah mengembangkan keahlian dalam pengembangan web, analisis data, dan manajemen database.</p>
     </div>
     <div class="content-item">
       <p>Sebagai lulusan STMIK MURA Lubuklinggau tahun 2014, saya memiliki fondasi yang kuat dalam prinsip-prinsip komputer dan terus mengembangkan skill sesuai dengan perkembangan teknologi terkini.</p>
@@ -533,16 +540,24 @@
     <a href="https://fb.me/dian.siswandi" class="social-icon" title="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
   </div>
 </div>
+  <!-- Social Media Links Desktop -->
+  <div class="social-links" id="socialLinksDesktop">
+    <a href="https://www.instagram.com/diansiswandi" class="social-icon" title="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/dian_siswandi" class="social-icon" title="Twitter" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+    <a href="https://id.linkedin.com/in/dian-siswandi-48846388" class="social-icon" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://fb.me/dian.siswandi" class="social-icon" title="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+  </div>
+</div>
 
 <!-- Floating Social Toggle Button for Mobile -->
 <div id="socialToggleBtn" aria-label="Tombol sosial media" role="button" tabindex="0" title="Sosial Media">
   <i class="fas fa-share-alt"></i>
 </div>
 <div id="socialFloating" aria-label="Sosial media" role="region" aria-hidden="true">
-  <a href="https://www.instagram.com/diansiswandi" title="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-  <a href="https://x.com/dian_siswandi" title="Twitter" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-  <a href="https://id.linkedin.com/in/dian-siswandi-48846388" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-  <a href="https://fb.me/dian.siswandi" title="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://www.instagram.com/diansiswandi" class="social-icon" title="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/dian_siswandi" class="social-icon" title="Twitter" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+    <a href="https://id.linkedin.com/in/dian-siswandi-48846388" class="social-icon" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://fb.me/dian.siswandi" class="social-icon" title="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
 </div>
 
 <!-- Modal for Profile Photo -->
@@ -550,7 +565,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
-        <img src="images/fotoprofil.jpeg" alt="Foto Profil Besar" class="img-fluid" />
+        <img src="https://placehold.co/500x500" alt="Foto Profil Besar" class="img-fluid" />
       </div>
     </div>
   </div>
@@ -568,82 +583,55 @@
     const bookContainer = document.getElementById('bookContainer');
     const socialToggleBtn = document.getElementById('socialToggleBtn');
     const socialFloating = document.getElementById('socialFloating');
-    const projectCarousel = document.getElementById('projectCarousel');
     let currentPage = 0;
     let isAnimatingClose = false;
-    let carousel = null;
 
-    // Initialize carousel
-    if (projectCarousel) {
-      carousel = new bootstrap.Carousel(projectCarousel, {
-        interval: 3000,
-        wrap: false
-      });
-      
-      // Add event listener for carousel slide end
-      projectCarousel.addEventListener('slid.bs.carousel', function() {
-        const activeIndex = Array.from(this.querySelectorAll('.carousel-item')).indexOf(this.querySelector('.carousel-item.active'));
-        const totalSlides = this.querySelectorAll('.carousel-item').length;
-        
-        // If last slide of carousel, close the book
-        if (activeIndex === totalSlides - 1) {
-          setTimeout(() => {
-            closeBookAnimation();
-          }, 1000);
-        }
-      });
+    // Function to update social floating visibility
+    function updateSocialFloatingVisibility() {
+      if (window.innerWidth <= 768) {
+        socialToggleBtn.style.display = 'flex';
+        socialFloating.style.display = 'flex';
+        socialFloating.classList.remove('show');
+      } else {
+        socialToggleBtn.style.display = 'none';
+        socialFloating.style.display = 'none';
+        socialFloating.classList.remove('show');
+      }
     }
 
-    // Open book on cover click
-    bookCover.addEventListener('click', function() {
-      if (isAnimatingClose) return;
-      bookCover.classList.add('open');
-      setTimeout(() => {
-        showPage(0);
-      }, 600);
-    });
+    // Initialize visibility
+    updateSocialFloatingVisibility();
 
-    // Profile photo modal
-    profilePhoto.addEventListener('click', function() {
-      const photoModal = new bootstrap.Modal(document.getElementById('photoModal'));
-      photoModal.show();
-    });
-
-    // Mobile floating social media toggle
+    // Toggle social floating
     socialToggleBtn.addEventListener('click', function() {
       socialFloating.classList.toggle('show');
     });
 
-    // Close book animation function
-    function closeBookAnimation() {
+    // Open book
+    bookCover.addEventListener('click', function() {
       if (isAnimatingClose) return;
-      isAnimatingClose = true;
-      pages[currentPage].classList.remove('active');
-      socialFloating.classList.remove('show');
-      bookCover.classList.remove('open');
-      bookCover.classList.add('closing');
-      setTimeout(() => {
-        bookCover.classList.remove('closing');
-        isAnimatingClose = false;
-        currentPage = -1;
-        prevBtn.disabled = true;
-        nextBtn.innerHTML = 'Berikutnya <i class="fas fa-chevron-right"></i>';
-        pages.forEach(p => p.classList.remove('active'));
-      }, 1200);
-    }
+      bookCover.classList.add('open');
+      setTimeout(() => showPage(0), 600);
+    });
 
-    // Show page function
+    // Profile photo modal
+    profilePhoto.addEventListener('click', function() {
+      new bootstrap.Modal(document.getElementById('photoModal')).show();
+    });
+
+    // Navigation functions
     function showPage(pageIndex) {
-      pages.forEach((page, idx) => {
+      pages.forEach((page, index) => {
         page.classList.remove('active');
-        if (idx === pageIndex) {
+        if (index === pageIndex) {
           setTimeout(() => page.classList.add('active'), 100);
         }
       });
+      
       prevBtn.disabled = pageIndex === 0;
       currentPage = pageIndex;
       
-      // Update next button text on last page
+      // Update button text on last page
       if (currentPage === pages.length - 1) {
         nextBtn.innerHTML = 'Tutup <i class="fas fa-times ms-2"></i>';
       } else {
@@ -651,25 +639,36 @@
       }
     }
 
-    // Navigation buttons
-    nextBtn.addEventListener('click', () => {
+    // Navigation event listeners
+    nextBtn.addEventListener('click', function() {
       if (isAnimatingClose) return;
       if (currentPage < pages.length - 1) {
         showPage(currentPage + 1);
       } else {
-        closeBookAnimation();
+        // Close animation
+        isAnimatingClose = true;
+        socialFloating.classList.remove('show');
+        pages[currentPage].classList.remove('active');
+        bookCover.classList.remove('open');
+        bookCover.classList.add('closing');
+        setTimeout(() => {
+          bookCover.classList.remove('closing');
+          isAnimatingClose = false;
+          currentPage = -1;
+          prevBtn.disabled = true;
+          nextBtn.innerHTML = 'Berikutnya <i class="fas fa-chevron-right"></i>';
+          pages.forEach(p => p.classList.remove('active'));
+        }, 1200);
       }
     });
 
-    prevBtn.addEventListener('click', () => {
+    prevBtn.addEventListener('click', function() {
       if (isAnimatingClose) return;
-      if (currentPage > 0) {
-        showPage(currentPage - 1);
-      }
+      if (currentPage > 0) showPage(currentPage - 1);
     });
 
     // Keyboard navigation
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', function(e) {
       if (isAnimatingClose) return;
       if (e.key === 'ArrowRight' && currentPage < pages.length - 1) {
         showPage(currentPage + 1);
@@ -678,30 +677,21 @@
       }
     });
 
-    // Swipe support for mobile
+    // Resize handler
+    window.addEventListener('resize', updateSocialFloatingVisibility);
+
+    // Touch swipe for mobile
     let touchStartX = 0;
-    let touchEndX = 0;
-    const threshold = 50;
-
-    bookContainer.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
+    bookContainer.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
     bookContainer.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
-    function handleSwipe() {
-      if (isAnimatingClose) return;
-      
-      if (touchEndX < touchStartX - threshold && currentPage < pages.length - 1) {
+      const touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 50 && currentPage < pages.length - 1) {
         showPage(currentPage + 1);
-      } else if (touchEndX > touchStartX + threshold && currentPage > 0) {
+      } else if (touchEndX > touchStartX + 50 && currentPage > 0) {
         showPage(currentPage - 1);
       }
-    }
+    });
   });
 </script>
 </body>
-                                                                                     </html>
+</html>
