@@ -3,213 +3,611 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Dian Siswandi</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Portofolio - DIAN SISWANDI, S.Kom</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
         }
-        header {
-            background: #007bff;
+        
+        .book-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 90vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .book-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
             color: white;
-            padding: 50px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-        }
-        .section {
-            padding: 50px 0;
-        }
-        .rounded-circle {
-            border: 2px solid #007bff;
+            padding: 40px;
+            z-index: 10;
             cursor: pointer;
+            transition: transform 1.2s ease;
         }
-        .progress {
-            height: 20px;
+        
+        .book-cover.open {
+            transform: translateX(-100%);
         }
-        .progress-bar {
-            background-color: #007bff;
+        
+        .book-cover h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        .social-icons a {
-            margin: 0 10px;
-            color: #007bff;
-            transition: transform 0.3s;
+        
+        .book-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            padding: 40px;
+            overflow-y: auto;
+            display: none;
         }
-        .social-icons a:hover {
-            transform: scale(1.2);
+        
+        .book-content.active {
+            display: block;
         }
-        footer {
-            background: #f8f9fa;
-            padding: 20px 0;
-            text-align: center;
+        
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-color);
+        }
+        
+        .content-item {
+            margin-bottom: 25px;
+        }
+        
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 5px solid var(--secondary-color);
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: 20px;
+        }
+
+        .modal-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            border-radius: 15px;
+        }
+        
+        .nav-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .nav-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .social-links {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .skill-badge {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 5px;
+            display: inline-block;
+        }
+        
+        .carousel-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .carousel-image {
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .footer-contact {
+            position: absolute;
+            bottom: 70px;
+            left: 30px;
+            font-size: 0.9rem;
+            color: var(--dark-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-container {
+                height: 95vh;
+            }
+            
+            .book-cover h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-photo {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .carousel-image {
+                height: 250px;
+            }
+            
+            .nav-buttons {
+                bottom: 10px;
+            }
+            
+            .social-links {
+                bottom: 10px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            .book-container {
+                height: 90vh;
+            }
+            
+            .book-cover h1 {
+                font-size: 2rem;
+            }
+            
+            .book-content {
+                padding: 20px;
+            }
+            
+            .profile-photo {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .carousel-image {
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>Portofolio</h1>
-        <h2>Dian Siswandi, S.Kom</h2>
-        <p>Teknik Informatika</p>
-    </header>
-
-    <div class="container section text-center">
-        <img src="images/fotoprofil.jpeg" alt="Dian Siswandi" class="rounded-circle" width="250" height="250" data-bs-toggle="modal" data-bs-target="#profileModal">
-        <h2>Biodata Pribadi</h2>
-        <table class="table table-bordered mx-auto" style="width: 80%;">
-            <tbody>
-                <tr>
-                    <th>Nama</th>
-                    <td>Dian Siswandi, S.Kom</td>
-                </tr>
-                <tr>
-                    <th>Tempat, Tanggal Lahir</th>
-                    <td>Lubuklinggau, 12 September 1992</td>
-                </tr>
-                <tr>
-                    <th>Jenis Kelamin</th>
-                    <td>Laki-Laki</td>
-                </tr>
-                <tr>
-                    <th>Agama</th>
-                    <td>Islam</td>
-                </tr>
-                <tr>
-                    <th>Alamat</th>
-                    <td>Desa Lawang Agung Dusun VII, Kabupaten Musi Rawas Utara</td>
-                </tr>
-                <tr>
-                    <th>No. Hp/Wa</th>
-                    <td>0852-0518-xxxx</td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td>xxxxxx@gmail.com</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="container section">
-        <h2 class="text-center">Deskripsi Singkat</h2>
-        <p class="text-center">
-            Saya Dian Siswandi, Lulus di salah satu Perguruan Tinggi Swasta yaitu: Sekolah Tinggi Manajemen dan Ilmu Komputer Musi Rawas atau yang biasa disebut STMIK MURA Lubuklinggau dan sekarang berganti nama Universitas Bina Insan atau disebut UNIBI. 
-            Saya lulus di jurusan Teknik Informatika dan mempunyai pengalaman organisasi menjadi ketua, dan nama organisasi nya adalah Komunitas Mahasiswa Linux atau biasa disebut KOMALIN. 
-            Dan sebelum saya lulus dari kuliah, saya pernah bekerja sebagai pekerja paruh waktu dibeberapa tempat seperti: 
-            1. Menjadi Operator Entri Data disebuah Instansi Pemerintah di Kabupaten Musi Rawas Utara; 
-            2. Menjadi Operator Server Quick Count Pemilihan Bupati dan Presiden; 
-            Dan ketika lulus kuliah saya pernah membuat website Jual Beli (web dinamis/web sederhana) dibeberapa tempat dan saya jual ke teman dan relasi lainnya. 
-            Dan tahun setelah lulus itu saya bekerja juga sebagai Karyawan Honorer dan menduduki jabatan sebagai Administrator Database 1 tahun dan kemudian menjadi Operator Keuangan sampai dengan sekarang. 
-            Saya sangat hobi dengan membaca referensi pelajaran di media online, membuat desain gambar, dan membuat website sejak saya duduk di bangku Sekolah Menengah Atas. 
-            Mungkin ini saja deskripsi singkat saya, terima kasih.
-        </p>
-    </div>
-
-    <div class="container section">
-        <h2 class="text-center">Pengalaman Kerja</h2>
-        <div class="progress mb-3">
-            <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">Administrator Database (1 Tahun)</div>
+    <div class="book-container">
+        <!-- Book Cover -->
+        <div class="book-cover" id="bookCover">
+            <h1>PORTFOLIO</h1>
+            <p>DIAN SISWANDI, S.Kom</p>
+            <p>Web Developer & Data Analyst</p>
+            <p style="margin-top: 30px;">
+                <small>Klik untuk membuka portfolio</small>
+            </p>
         </div>
-        <div class="progress mb-3">
-            <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Operator Keuangan (Sekarang)</div>
+        
+        <!-- Page 1: Biodata -->
+        <div class="book-content" id="page1">
+            <h2 class="page-title">Biodata Diri</h2>
+            
+            <div class="text-center mb-4">
+                <img src="images/fotoprofil.jpeg" alt="Foto Profil DIAN SISWANDI" class="profile-photo" id="profilePhoto">
+            </div>
+            
+            <div class="content-item">
+                <h4><i class="fas fa-user"></i> Nama</h4>
+                <p>DIAN SISWANDI, S.Kom</p>
+            </div>
+            
+            <div class="content-item">
+                <h4><i class="fas fa-birthday-cake"></i> Tempat, Tanggal Lahir</h4>
+                <p>Lubuklinggau, 12 September 1992</p>
+            </div>
+            
+            <div class="content-item">
+                <h4><i class="fas fa-venus-mars"></i> Jenis Kelamin</h4>
+                <p>Laki-laki</p>
+            </div>
+            
+            <div class="content-item">
+                <h4><i class="fas fa-map-marker-alt"></i> Alamat</h4>
+                <p>Dusun VII Desa Lawang Agung, Kecamatan Rupit, Kabupaten Musi Rawas Utara</p>
+            </div>
+            
+            <div class="content-item">
+                <h4><i class="fas fa-phone"></i> No. HP/WA</h4>
+                <p>0852-0518-xxxx</p>
+            </div>
+            
+            <div class="content-item">
+                <h4><i class="fas fa-envelope"></i> Email</h4>
+                <p>dian.siswandi</p>
+            </div>
         </div>
-    </div>
-
-    <div class="container section">
-        <h2 class="text-center">Hobi</h2>
-        <div class="progress mb-3">
-            <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">Membaca Buku</div>
+        
+        <!-- Page 2: Tentang Saya -->
+        <div class="book-content" id="page2">
+            <h2 class="page-title">Tentang Saya</h2>
+            
+            <div class="content-item">
+                <p>Saya adalah seorang profesional di bidang teknologi informasi dengan latar belakang pendidikan S1 Teknik Informatika. Dengan pengalaman lebih dari 7 tahun di berbagai peran teknis dan administratif, saya telah mengembangkan keahlian dalam pengembangan web, analisis data, dan manajemen database.</p>
+            </div>
+            
+            <div class="content-item">
+                <p>Sebagai lulusan STMIK MURA Lubuklinggau tahun 2014, saya memiliki fondasi yang kuat dalam prinsip-prinsip komputer dan terus mengembangkan skill sesuai dengan perkembangan teknologi terkini.</p>
+            </div>
+            
+            <div class="content-item">
+                <p>Pengalaman organisasi sebagai Ketua Komunitas Mahasiswa Linux telah membentuk kemampuan leadership dan kolaborasi saya, sementara pengalaman kerja di berbagai instansi pemerintah telah memberikan pemahaman mendalam tentang sistem administrasi dan keuangan.</p>
+            </div>
         </div>
-        <div class="progress mb-3">
-            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Desain Grafis</div>
-        </div>
-        <div class="progress mb-3">
-            <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">Pengembangan Web</div>
-        </div>
-    </div>
-
-    <div class="container section">
-        <h2 class="text-center">Akun Sosial Media</h2>
-        <div class="social-icons text-center">
-            <a href="https://instagram.com/diansiswandi" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-            <a href="https://facebook.com/dian.siswandi" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
-            <a href="https://twitter.com/diansiswandi" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-            <a href="https://linkedin.com/in/dian-siswandi-48846388" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-        </div>
-    </div>
-
-    <div class="container section">
-        <h2 class="text-center">Gallery</h2>
-        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="images/image1.jpg" class="d-block w-100" alt="Image 1" data-bs-toggle="modal" data-bs-target="#image1Modal">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/image2.jpg" class="d-block w-100" alt="Image 2" data-bs-toggle="modal" data-bs-target="#image2Modal">
+        
+        <!-- Page 3: Pendidikan -->
+        <div class="book-content" id="page3">
+            <h2 class="page-title">Riwayat Pendidikan</h2>
+            
+            <div class="content-item">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-graduation-cap"></i> S1/Strata 1 - Teknik Informatika</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Perguruan Tinggi Swasta</h6>
+                        <p class="card-text">STMIK MURA LUBUKLINGGAU / Universitas Bina Insan</p>
+                        <p class="card-text"><small class="text-muted">Tahun 2014</small></p>
+                    </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+        </div>
+        
+        <!-- Page 4: Organisasi -->
+        <div class="book-content" id="page4">
+            <h2 class="page-title">Riwayat Organisasi</h2>
+            
+            <div class="content-item">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-users"></i> Ketua Komunitas</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Komunitas Mahasiswa Linux</h6>
+                        <p class="card-text">Memimpin dan mengkoordinasi kegiatan komunitas, mengorganisir workshop dan event teknologi</p>
+                        <p class="card-text"><small class="text-muted">1 Tahun</small></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-item">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-user-friends"></i> Anggota</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Mahasiswa Jurusan</h6>
+                        <p class="card-text">Berpartisipasi aktif dalam kegiatan kemahasiswaan dan proyek-proyek akademik</p>
+                        <p class="card-text"><small class="text-muted">2 Bulan</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 5: Pekerjaan -->
+        <div class="book-content" id="page5">
+            <h2 class="page-title">Riwayat Pekerjaan</h2>
+            
+            <h4>Pekerja Paruh Waktu</h4>
+            
+            <div class="content-item">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-laptop"></i> Operator Entri Data</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Instansi Pemerintah</h6>
+                        <p class="card-text">Melakukan input dan pengolahan data dengan akurasi tinggi</p>
+                        <p class="card-text"><small class="text-muted">2 Bulan</small></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-item">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-desktop"></i> Operator Warnet</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Warnet</h6>
+                        <p class="card-text">Mengelola operasional warnet dan membantu pengguna</p>
+                        <p class="card-text"><small class="text-muted">5 Bulan</small></p>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>Pekerja Tetap</h4>
+            
+            <div class="content-item">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-briefcase"></i> Karyawan Honorer</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Instansi Pemerintah (2016 - Sekarang)</h6>
+                        
+                        <div class="mt-3">
+                            <h6>Staf Umum</h6>
+                            <p><small class="text-muted">1 Tahun</small></p>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <h6>Administrator Database</h6>
+                            <p><small class="text-muted">1 Tahun</small></p>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <h6>Staf Keuangan</h6>
+                            <p><small class="text-muted">3 Bulan</small></p>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <h6>Operator Keuangan</h6>
+                            <p><small class="text-muted">7 Tahun</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 6: Skills -->
+        <div class="book-content" id="page6">
+            <h2 class="page-title">Skills & Kemampuan</h2>
+            
+            <div class="content-item text-center">
+                <span class="skill-badge">Pengembangan Web</span>
+                <span class="skill-badge">Analisis Data</span>
+                <span class="skill-badge">Membaca</span>
+                <span class="skill-badge">Desain Grafis</span>
+                <span class="skill-badge">Database Management</span>
+                <span class="skill-badge">Network Administration</span>
+            </div>
+        </div>
+        
+        <!-- Page 7: Carousel -->
+        <div class="book-content" id="page7">
+            <h2 class="page-title">Portfolio Projects</h2>
+            
+            <div class="content-item">
+                <div class="carousel-container">
+                    <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://placehold.co/800x400/2c3e50/ffffff?text=Web+Development" class="d-block w-100 carousel-image" alt="Web Development Project">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://placehold.co/800x400/3498db/ffffff?text=Data+Analysis" class="d-block w-100 carousel-image" alt="Data Analysis Project">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://placehold.co/800x400/e74c3c/ffffff?text=Database+Management" class="d-block w-100 carousel-image" alt="Database Management Project">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" disabled>
+                <i class="fas fa-chevron-left"></i> Sebelumnya
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+            <button class="nav-btn" id="nextBtn">
+                Berikutnya <i class="fas fa-chevron-right"></i>
             </button>
         </div>
+        
+        <!-- Social Media Links -->
+        <div class="social-links">
+            <a href="https://www.instagram.com/doansiswandi" class="social-icon" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/diansiswandi" class="social-icon" title="Twitter/X">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://fb.me/dian.siswandi" class="social-icon" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+        
     </div>
 
-    <!-- Modal untuk Foto Profil -->
-    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <!-- Modal for Profile Photo -->
+    <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Dian Siswandi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
                 <div class="modal-body">
-                    <img src="images/fotoprofil.jpeg" class="img-fluid" alt="Dian Siswandi">
+                    <img src="images/fotoprofil.jpeg" alt="Foto Profil" class="img-fluid">
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal untuk Gambar 1 -->
-    <div class="modal fade" id="image1Modal" tabindex="-1" aria-labelledby="image1ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="image1ModalLabel">Gambar 1</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/image1.jpg" class="img-fluid" alt="Image 1">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal untuk Gambar 2 -->
-    <div class="modal fade" id="image2Modal" tabindex="-1" aria-labelledby="image2ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="image2ModalLabel">Gambar 2</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/image2.jpg" class="img-fluid" alt="Image 2">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Dian Siswandi. All rights reserved.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookCover = document.getElementById('bookCover');
+            const pages = document.querySelectorAll('.book-content');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const profilePhoto = document.getElementById('profilePhoto');
+            let currentPage = 0;
+            
+            // Open book on cover click
+            bookCover.addEventListener('click', function() {
+                bookCover.classList.add('open');
+                setTimeout(() => {
+                    showPage(0);
+                }, 600);
+            });
+            
+            // Show profile photo modal
+            profilePhoto.addEventListener('click', function() {
+                const photoModal = new bootstrap.Modal(document.getElementById('photoModal'));
+                photoModal.show();
+            });
+            
+            // Navigation functions
+            function showPage(pageIndex) {
+                pages.forEach((page, index) => {
+                    page.classList.remove('active');
+                    if (index === pageIndex) {
+                        setTimeout(() => {
+                            page.classList.add('active');
+                        }, 100);
+                    }
+                });
+                
+                // Update button states
+                prevBtn.disabled = pageIndex === 0;
+                nextBtn.disabled = pageIndex === pages.length - 1;
+                
+                currentPage = pageIndex;
+            }
+            
+            // Navigation event listeners
+            nextBtn.addEventListener('click', function() {
+                if (currentPage < pages.length - 1) {
+                    showPage(currentPage + 1);
+                }
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentPage > 0) {
+                    showPage(currentPage - 1);
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' && currentPage < pages.length - 1) {
+                    showPage(currentPage + 1);
+                } else if (e.key === 'ArrowLeft' && currentPage > 0) {
+                    showPage(currentPage - 1);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
