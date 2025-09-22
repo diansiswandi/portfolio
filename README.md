@@ -3,7 +3,7 @@
 </div>
 <h1 align="center">Preview Portfolio</h1>
 <div align="center">
-  <img width="180" src="images/halaman-awal.jpg"> <img width="180" src="images/halaman-riwayat-pekerjaan.jpg">
+  <img width="280" src="images/halaman-awal.jpg"> <img width="280" src="images/halaman-riwayat-pekerjaan.jpg">
 </div>
   
 # Portofolio Dian Siswandi, S.Kom
@@ -28,4 +28,4 @@ Website ini dibuat menggunakan kombinasi HTML, CSS, JavaScript dan Bootstrap 5. 
 > Website `https://diansiswandi.github.io/portfolio/`
 
 #### Terakhir Update
-- `Tanggal 19-September-2025 Pukul 01:11 Wib`
+- `Tanggal 22-September-2025 Pukul 10:30 Wib`
