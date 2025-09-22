@@ -1,3 +1,11 @@
+<div align="center">
+  <img width="50" src="images/diansiswandi-20240908-0001.jpg" alt="Dian Siswandi, S.Kom">
+</div>
+<h1 align="center">Preview Portfolio</h1>
+<div align="center">
+  <img width="100" src="#">
+</div>
+  
 # Portofolio Dian Siswandi, S.Kom
 
 Selamat datang di porttolio pribadi saya! Ini adalah web satu halaman yang menampilkan informasi tentang diri saya, pengalaman, dan karya-karya saya.
