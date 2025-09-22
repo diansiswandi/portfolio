@@ -3,7 +3,7 @@
 </div>
 <h1 align="center">Preview Portfolio</h1>
 <div align="center">
-  <img width="100" src="images/halaman-awal.jpg"> | <img width="100" src="images/halaman-riwayat-pekerjaan.jpg">
+  <img width="100" src="images/halaman-awal.jpg"> <img width="100" src="images/halaman-riwayat-pekerjaan.jpg">
 </div>
   
 # Portofolio Dian Siswandi, S.Kom
