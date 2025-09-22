@@ -1,9 +1,9 @@
 <div align="center">
-  <img width="50" src="images/diansiswandi-20240908-0001.jpg" alt="Dian Siswandi, S.Kom">
+  <img width="80" src="images/diansiswandi-20240908-0001.jpg" alt="Dian Siswandi, S.Kom">
 </div>
 <h1 align="center">Preview Portfolio</h1>
 <div align="center">
-  <img width="100" src="#">
+  <img width="100" src="images/halaman-awal.jpg"> | <img width="100" src="images/halaman-riwayat-pekerjaan.jpg">
 </div>
   
 # Portofolio Dian Siswandi, S.Kom
